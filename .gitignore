@@ -1,0 +1,10 @@
+node_modules
+dist
+reports
+.serverless
+.vscode
+.DS_Store
+.stryker-tmp
+.env
+*.zip
+dependency-check-report.xml
