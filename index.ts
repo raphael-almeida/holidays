@@ -27,7 +27,7 @@ const getHolidaysList = async () => {
     };
   });
 
-  //   console.log(holidaysList);
+  console.log(holidaysList);
   //   console.log(calendar_v3.Resource$Calendarlist);
 };
 

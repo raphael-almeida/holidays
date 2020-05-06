@@ -71,8 +71,7 @@ var getHolidaysList = function () { return __awaiter(void 0, void 0, void 0, fun
                         end: item.end.date
                     };
                 });
-                //   console.log(holidaysList);
-                console.log(googleapis_1.calendar_v3.Resource$Calendarlist);
+                console.log(holidaysList);
                 return [2 /*return*/];
         }
     });
