@@ -37,38 +37,52 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 var node_fetch_1 = require("node-fetch");
-var GoolgeCalendarHoliday = require('google-calendar-holiday');
+var googleapis_1 = require("googleapis");
+var apis = googleapis_1.google.getSupportedAPIs();
 var getCalendar = function () { return __awaiter(void 0, void 0, void 0, function () {
-    var mykey, calendarid, url, response, responseJson;
+    var url, response;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                mykey = 'AIzaSyBi-qDrJ5m6WjRffxImZ3x3SWozB9YkAH4';
-                calendarid = 'en.german#holiday@group.v.calendar.google.com';
-                url = 'https://www.googleapis.com/calendar/v3/calendars/pt.brazilian%23holiday%40group.v.calendar.google.com/events?key=AIzaSyBi-qDrJ5m6WjRffxImZ3x3SWozB9YkAH4';
+                url = "https://www.googleapis.com/calendar/v3/calendars/en.brazilian%23holiday%40group.v.calendar.google.com/events?key=AIzaSyBi-qDrJ5m6WjRffxImZ3x3SWozB9YkAH4";
                 return [4 /*yield*/, node_fetch_1["default"](url, {
-                        method: 'get',
-                        headers: { 'Content-Type': 'application/json' }
+                        method: "get",
+                        headers: { "Content-Type": "application/json" }
                     })];
             case 1:
                 response = _a.sent();
                 return [4 /*yield*/, response.json()];
-            case 2:
-                responseJson = _a.sent();
-                console.log(JSON.stringify(responseJson));
+            case 2: return [2 /*return*/, _a.sent()];
+        }
+    });
+}); };
+// método para extrair a lista de holidays
+var getHolidaysList = function () { return __awaiter(void 0, void 0, void 0, function () {
+    var response, holidaysList;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, getCalendar()];
+            case 1:
+                response = _a.sent();
+                holidaysList = response.items.map(function (item) {
+                    return {
+                        summary: item.summary,
+                        start: item.start.date,
+                        end: item.end.date
+                    };
+                });
+                //   console.log(holidaysList);
+                console.log(googleapis_1.calendar_v3.Resource$Calendarlist);
                 return [2 /*return*/];
         }
     });
 }); };
-getCalendar();
-// const holiday = new GoolgeCalendarHoliday(
-//     'AIzaSyBi-qDrJ5m6WjRffxImZ3x3SWozB9YkAH4',
-//     {
-//         // hkHoliday: 'zh-tw.hong_kong%23holiday%40group.v.calendar.google.com',
-//         // usHoliday: 'en.usa%23holiday%40group.v.calendar.google.com',
-//         brHoliday: 'pt.br%23holiday%40group.v.calendar.google.com',
-//     },
-// );
-// // this will try to make an API call to test if the API key is valid
-// holiday.init();
-// holiday.isHoliday('2020-05-04').then(console.log)
+// função que descobre se um dado dia é dia útil
+var isBusinessDay = function (day) { return __awaiter(void 0, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        return [2 /*return*/, true];
+    });
+}); };
+// função que descobre dado um dia, descobre o próximo dia útil
+////
+getHolidaysList();
