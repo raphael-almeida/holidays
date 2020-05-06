@@ -6,5 +6,6 @@ reports
 .DS_Store
 .stryker-tmp
 .env
+*.js
 *.zip
 dependency-check-report.xml
